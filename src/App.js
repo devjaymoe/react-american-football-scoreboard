@@ -17,6 +17,26 @@ function App() {
   const awayFG = () => {setScoreAway(awayScore + 3)};
   const awayReset = () => {setScoreAway(0)};
 
+  // get time refernce; this one is 15 min from now
+  var countDownTime = new Date().getTime() + 15 * 60 * 1000;
+  // timer function
+  var x = setInterval(function(){
+    // todays time
+    var now = new Date().getTime();
+    // get the distance between the two times
+    var distance = countDownTime - now;
+    //time calculations for minutes and seconds
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // put the variables on the dom
+    document.querySelector(".timer").textContent =  `${minutes}: ${seconds}`;
+    // once it hits zero timer stops
+    if(distance < 0){
+      clearInterval(x);
+      alert('Time Up!')
+    }
+  }, 1000)
+
   return (
     <div className="container">
       <section className="scoreboard">
@@ -28,7 +48,7 @@ function App() {
 
             <div className="home__score">{homeScore}</div>
           </div>
-          <div className="timer">00:03</div>
+          <div className="timer">15:00</div>
           <div className="away">
             <h2 className="away__name">Tigers</h2>
             <div className="away__score">{awayScore}</div>

@@ -119,3 +119,8 @@
   margin: 1rem;
   border-radius: 4px;
 }
+
+#ballOnButton{
+  margin: .5rem;
+  padding: .8rem 1.5rem;
+}
